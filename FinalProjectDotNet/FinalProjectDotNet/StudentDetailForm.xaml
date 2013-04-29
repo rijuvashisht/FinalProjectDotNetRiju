@@ -4,7 +4,7 @@
        xmlns:System="clr-namespace:System;assembly=mscorlib" 
         xmlns:local="clr-namespace:FinalProjectDotNet"
         
-          Title="StudentDetailForm" Height="565" Width="431" Loaded="Window_Loaded" Icon="/FinalProjectDotNet;component/images2/students.ico">
+          Title="StudentDetailForm" Height="565" Width="431" Loaded="Window_Loaded">
 
 
         <Window.Resources>
