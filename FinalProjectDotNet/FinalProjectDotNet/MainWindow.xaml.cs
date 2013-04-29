@@ -76,12 +76,29 @@ namespace FinalProjectDotNet
             studentdetail.ShowDialog();
         }
 
-        private void ExitMainApplicationExcuted(object sender, ExecutedRoutedEventArgs e)
+      
+        private void ExitStudentDetail(object sender, ExecutedRoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void OpenCourseDetail(object sender, ExecutedRoutedEventArgs e)
+        {
+            CourseDetail crs = new CourseDetail();
+            crs.ShowDialog();
+        }
+
+        private void ExitCourseDetail(object sender, ExecutedRoutedEventArgs e)
         {
             this.Close();
         }
 
         private void OpenCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void OpenCanExecuted(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
         }
@@ -256,7 +273,7 @@ namespace FinalProjectDotNet
             bool isregistered = false;
             Student st=(Student)cmbStudent.SelectedItem;
             Course cs = (Course)listBoxUNReg.SelectedItem;
-            if (listBoxReg.SelectedItem != null)
+            if (listBoxUNReg.SelectedItem != null)
             {
                
                isregistered= RegistrationDB.RegisterStudent(st, cs);
@@ -278,7 +295,7 @@ namespace FinalProjectDotNet
             if (listBoxReg.SelectedItem != null)
             {
               
-              isunregistered=  RegistrationDB.RegisterStudent(st, cs);
+              isunregistered=  RegistrationDB.UnRegisterStudent(cs);
               reloadreg();
               reloadunreg();
             }
@@ -308,6 +325,11 @@ namespace FinalProjectDotNet
             {
                 listBoxUNReg.Items.Add(course);
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
  
     }

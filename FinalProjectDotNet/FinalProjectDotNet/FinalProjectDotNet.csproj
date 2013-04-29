@@ -63,6 +63,7 @@
     </Compile>
     <Compile Include="bussinesslogiclayer\CourseValidation.cs" />
     <Compile Include="bussinesslogiclayer\StudentValidation.cs" />
+    <Compile Include="CustomCommands.cs" />
     <Compile Include="DatabaseLayer\CourseDB.cs" />
     <Compile Include="DatabaseLayer\GradesDB.cs">
       <SubType>Code</SubType>
