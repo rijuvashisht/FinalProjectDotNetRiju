@@ -30,9 +30,17 @@ namespace FinalProjectDotNet
             InitializeComponent();
             this.mode = mode;
             this.st = st;
-
+            loadProvince();
         }
-
+        private void loadProvince()
+        {
+            List<Province> list = new List<Province>();
+            list = ProvinceDB.GetProvinceList();
+            foreach(Province p in list){
+                cmbprovince.Items.Add(p);
+            }
+            cmbprovince.SelectedIndex = 0;
+        }
         public void setValues(Mode mode, Student st)
         {
            

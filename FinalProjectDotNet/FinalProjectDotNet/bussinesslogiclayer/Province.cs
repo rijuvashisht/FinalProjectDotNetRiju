@@ -10,6 +10,11 @@ namespace FinalProjectDotNet
     {
         public string ProvinceId { get; set; }
         public string ProvinceName { get; set; }
+
+        public override string ToString()
+        {
+            return ProvinceName;
+        }
     }
     public class Provinces
     {
@@ -20,4 +25,5 @@ namespace FinalProjectDotNet
             return provinces;
         }
     }
+   
 }
