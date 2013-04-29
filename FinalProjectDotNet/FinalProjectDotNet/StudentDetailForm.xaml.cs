@@ -32,6 +32,32 @@ namespace FinalProjectDotNet
             this.st = st;
             loadProvince();
         }
+        public void initvalues(Student st)
+        {
+            try
+            {
+                txtId.Text=st.Studid.ToString();
+            }
+            catch (FormatException ex)
+            {
+            }
+            txtfname.Text= st.Fname ;
+          txtlname.Text= st.Lname ;
+          txtaddress.Text = st.Address;
+          txtcity.Text = st.City;
+          cmbprovince.Text = st.Province;
+          txtzip.Text = st.Zip;
+            
+            try
+            {
+                txtdob.Text= st.Dob;
+            }
+            catch (Exception ex)
+            {
+            }
+
+           txtphone.Text= st.Phno;
+        }
         private void loadProvince()
         {
             List<Province> list = new List<Province>();
@@ -59,9 +85,7 @@ namespace FinalProjectDotNet
                 st.City = txtcity.Text;
                 st.Province = cmbprovince.Text;
                 st.Zip = txtzip.Text;
-                st.Fname = txtfname.Text;
-                st.Fname = txtfname.Text;
-                st.Fname = txtfname.Text;
+               
                 try
                 {
                     st.Dob = txtdob.DisplayDate.ToString();
@@ -76,9 +100,59 @@ namespace FinalProjectDotNet
             }
             else if (mode == Mode.Delete)
             {
+                initvalues(st);
+                try
+                {
+                    st.Studid = Int32.Parse(txtId.Text);
+                }
+                catch (FormatException ex)
+                {
+                }
+                st.Fname = txtfname.Text;
+                st.Lname = txtlname.Text;
+                st.Address = txtaddress.Text;
+                st.City = txtcity.Text;
+                st.Province = cmbprovince.Text;
+                st.Zip = txtzip.Text;
+               
+                try
+                {
+                    st.Dob = txtdob.DisplayDate.ToString();
+                }
+                catch (Exception ex)
+                {
+                }
+
+                st.Phno = txtphone.Text;
+
             }
             else if (mode == Mode.Update)
             {
+                initvalues(st);
+                try
+                {
+                    st.Studid = Int32.Parse(txtId.Text);
+                }
+                catch (FormatException ex)
+                {
+                }
+                st.Fname = txtfname.Text;
+                st.Lname = txtlname.Text;
+                st.Address = txtaddress.Text;
+                st.City = txtcity.Text;
+                st.Province = cmbprovince.Text;
+                st.Zip = txtzip.Text;
+              
+                try
+                {
+                    st.Dob = txtdob.DisplayDate.ToString();
+                }
+                catch (Exception ex)
+                {
+                }
+
+                st.Phno = txtphone.Text;
+
             }
         }
 

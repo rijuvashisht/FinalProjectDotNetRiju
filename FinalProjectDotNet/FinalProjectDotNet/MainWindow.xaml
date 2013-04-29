@@ -12,8 +12,8 @@
 
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:CustomCommands.AddStudent}" Executed="OpenStudentDetail" CanExecute="OpenCanExecute" />
-        <CommandBinding Command="{x:Static local:CustomCommands.UpdateStudent}" Executed="OpenStudentDetail" CanExecute="OpenCanExecute" />
-        <CommandBinding Command="{x:Static local:CustomCommands.DelStudent}" Executed="OpenStudentDetail" CanExecute="OpenCanExecute" />
+        <CommandBinding Command="{x:Static local:CustomCommands.UpdateStudent}" Executed="UpdateStudentDetail" CanExecute="OpenCanExecute" />
+        <CommandBinding Command="{x:Static local:CustomCommands.DelStudent}" Executed="DeleteStudentDetail" CanExecute="OpenCanExecute" />
         <CommandBinding Command="Close" Executed="ExitStudentDetail" CanExecute="ExitMainAppExecuted" />
         <CommandBinding Command="{x:Static local:CustomCommands.AddCourse}" Executed="OpenCourseDetail" CanExecute="OpenCanExecuted" />
     </Window.CommandBindings>
@@ -98,17 +98,17 @@
                             <ColumnDefinition MaxWidth="150" MinWidth="150" ></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <ListBox Name="listboxStudent" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True"  Background="Bisque" Grid.Column="0"   Height="Auto" Width="Auto" >
+                        <ListBox Name="listboxStudent" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True"  Background="Bisque" Grid.Column="0"   Height="Auto" Width="Auto" SelectionChanged="listboxStudent_SelectionChanged">
                         
                     </ListBox>
                     <StackPanel Grid.Column="1" MinWidth="150" MaxWidth="150" Height="324" Margin="0,0,0,6">
                             <Button Command="{x:Static local:CustomCommands.AddStudent}" Content="Add Student" Margin="20,10,20,10" Click="Button_Click">
                             
                         </Button>
-                            <Button  Content="Delete Student"  Margin="20,10,20,10" Command="{x:Static local:CustomCommands.DelStudent}">
+                            <Button Name="btndel" Content="Delete Student"  Margin="20,10,20,10" Command="{x:Static local:CustomCommands.DelStudent}" Click="Button_Click_3" >
 
                         </Button>
-                            <Button Content="Update Student" Margin="20,10,20,10" Command="{x:Static local:CustomCommands.UpdateStudent}">
+                            <Button Name="btnup" Content="Update Student" Margin="20,10,20,10" Command="{x:Static local:CustomCommands.UpdateStudent}">
 
                         </Button>
                         <Button Name="loadStudent" Content="Load"  Margin="20,10,20,10" Click="Button_Click_2">
@@ -138,9 +138,7 @@
                                 </Grid>
                             </GroupBox>
                         </StackPanel>
-                        <GroupBox Name="g2" Content="Filter">
-                            
-                        </GroupBox>
+                       
                     </Grid>
                 </DockPanel>
                 

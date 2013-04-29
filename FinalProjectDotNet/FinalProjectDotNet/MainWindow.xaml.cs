@@ -22,6 +22,7 @@ namespace FinalProjectDotNet
     public partial class MainWindow : Window
     {
         Mode mode;
+        Student st;
        
         public MainWindow()
         {
@@ -331,6 +332,45 @@ namespace FinalProjectDotNet
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UpdateStudentDetail(object sender, ExecutedRoutedEventArgs e)
+        {
+            
+            if (listboxStudent.SelectedItem != null)
+            {
+                StudentDetailForm studentdetail = new StudentDetailForm(Mode.Update, st);
+                studentdetail.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a student");
+            }
+        }
+
+        private void DeleteStudentDetail(object sender, ExecutedRoutedEventArgs e)
+        {
+            Student st = (Student)listboxStudent.SelectedItem;
+            if (listboxStudent.SelectedItem != null)
+            {
+                StudentDetailForm studentdetail = new StudentDetailForm(Mode.Update, st);
+                studentdetail.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a student");
+            }
+        }
+
+        private void listboxStudent_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            st = (Student)listboxStudent.SelectedItem;
             
         }
  
