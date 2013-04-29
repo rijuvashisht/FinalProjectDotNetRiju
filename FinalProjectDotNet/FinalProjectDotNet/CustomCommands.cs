@@ -15,6 +15,12 @@ namespace FinalProjectDotNet
         static RoutedUICommand addStu = new RoutedUICommand("Open Add Student Form", "AddStudent", typeof(CustomCommands));
 
         public static RoutedUICommand AddStudent { get { return addStu; } }
+        static RoutedUICommand delStu = new RoutedUICommand("Open Add Student Form", "DelStudent", typeof(CustomCommands));
+
+        public static RoutedUICommand DelStudent { get { return delStu; } }
+        static RoutedUICommand upStu = new RoutedUICommand("Open Add Student Form", "UpdateStudent", typeof(CustomCommands));
+
+        public static RoutedUICommand UpdateStudent { get { return upStu; } }
 
     }
 }

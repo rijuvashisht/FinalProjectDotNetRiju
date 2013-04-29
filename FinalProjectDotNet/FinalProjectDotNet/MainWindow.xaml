@@ -12,6 +12,8 @@
 
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:CustomCommands.AddStudent}" Executed="OpenStudentDetail" CanExecute="OpenCanExecute" />
+        <CommandBinding Command="{x:Static local:CustomCommands.UpdateStudent}" Executed="OpenStudentDetail" CanExecute="OpenCanExecute" />
+        <CommandBinding Command="{x:Static local:CustomCommands.DelStudent}" Executed="OpenStudentDetail" CanExecute="OpenCanExecute" />
         <CommandBinding Command="Close" Executed="ExitStudentDetail" CanExecute="ExitMainAppExecuted" />
         <CommandBinding Command="{x:Static local:CustomCommands.AddCourse}" Executed="OpenCourseDetail" CanExecute="OpenCanExecuted" />
     </Window.CommandBindings>
@@ -72,9 +74,13 @@
     <Grid>
         <ToolBarTray>
             <ToolBar DockPanel.Dock="Top" >
-                <Button Name="StudentManage" Command="Open" Margin="10" Padding="5" OverridesDefaultStyle="True">
+                <Button Name="StudentManage"  Command="{x:Static local:CustomCommands.AddStudent}" Margin="10" Padding="5" OverridesDefaultStyle="True">
                     <Image  MaxHeight="40" MaxWidth="40"  Source="/FinalProjectDotNet;component/images2/student.png" ></Image>
                 </Button>
+                <Button Name="CourseManage"  Command="{x:Static local:CustomCommands.AddCourse}" Margin="10" Padding="5">
+                    <Image  MaxHeight="40" MaxWidth="40"  Source="/FinalProjectDotNet;component/images2/Courses.ico" ></Image>
+                </Button>
+               
                 <Button Name="Exit" Command="Close"  Margin="10" Padding="5">
                     <Image  MaxHeight="40" MaxWidth="40" Source="/FinalProjectDotNet;component/images2/exit.png"></Image>
                 </Button>
@@ -99,10 +105,10 @@
                             <Button Command="{x:Static local:CustomCommands.AddStudent}" Content="Add Student" Margin="20,10,20,10" Click="Button_Click">
                             
                         </Button>
-                            <Button  Content="Delete Student"  Margin="20,10,20,10">
+                            <Button  Content="Delete Student"  Margin="20,10,20,10" Command="{x:Static local:CustomCommands.DelStudent}">
 
                         </Button>
-                        <Button Content="Update Student" Margin="20,10,20,10">
+                            <Button Content="Update Student" Margin="20,10,20,10" Command="{x:Static local:CustomCommands.UpdateStudent}">
 
                         </Button>
                         <Button Name="loadStudent" Content="Load"  Margin="20,10,20,10" Click="Button_Click_2">
@@ -117,7 +123,24 @@
                                 <RadioButton Content="Sort By Last Name" Height="Auto" Name="radiolastname" Checked="radiolastname_Checked" />
                             </StackPanel>
                             </GroupBox>
+                            <GroupBox Header="Filter" Height="64" Name="groupBox1" Width="124">
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition>
+                                            
+                                        </RowDefinition>
+                                        <RowDefinition>
+
+                                        </RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <RadioButton Content="Registered" Height="Auto" HorizontalAlignment="Left" Margin="1,0,0,0" Name="radioButton1" VerticalAlignment="Top" Width="111" />
+                                    <RadioButton Content="Unregistered" Grid.Row="1" Height="Auto" HorizontalAlignment="Right" Margin="0,0,-7,0" Name="radioButton2" VerticalAlignment="Top" Width="118" />
+                                </Grid>
+                            </GroupBox>
                         </StackPanel>
+                        <GroupBox Name="g2" Content="Filter">
+                            
+                        </GroupBox>
                     </Grid>
                 </DockPanel>
                 
@@ -172,7 +195,7 @@
                             
                         </Grid.ColumnDefinitions>
 
-                        <ListBox  Background="BlanchedAlmond" DisplayMemberPath=" " Height="277" Width="Auto" Margin="0,53,0,0" Name="listBoxReg" Loaded="listBoxReg_Loaded">
+                        <ListBox  Background="BlanchedAlmond"  Height="277" Width="Auto" Margin="0,53,0,0" Name="listBoxReg" Loaded="listBoxReg_Loaded">
 
                         </ListBox>
                         <StackPanel Grid.Column="1" MinWidth="150" MaxWidth="150" Height="277" Margin="0,53,0,0">
@@ -184,7 +207,7 @@
                             </Button>
                            
                         </StackPanel>
-                        <ListBox  Background="BlanchedAlmond" Grid.Column="2"  DisplayMemberPath=" " Height="277" Width="Auto" Margin="0,53,0,0" Name="listBoxUNReg">
+                        <ListBox  Background="BlanchedAlmond" Grid.Column="2"  Height="277" Width="Auto" Margin="0,53,0,0" Name="listBoxUNReg">
 
                         </ListBox>
                         

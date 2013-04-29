@@ -273,12 +273,13 @@ namespace FinalProjectDotNet
             bool isregistered = false;
             Student st=(Student)cmbStudent.SelectedItem;
             Course cs = (Course)listBoxUNReg.SelectedItem;
-            if (listBoxUNReg.SelectedItem != null)
+            if (cs != null)
             {
                
                isregistered= RegistrationDB.RegisterStudent(st, cs);
-               reloadreg();
+               
                reloadunreg();
+               reloadreg();
             }
             else
             {
@@ -292,10 +293,11 @@ namespace FinalProjectDotNet
             bool isunregistered = false;
             Student st = (Student)cmbStudent.SelectedItem;
             Course cs = (Course)listBoxReg.SelectedItem;
-            if (listBoxReg.SelectedItem != null)
+            if (cs != null)
             {
               
               isunregistered=  RegistrationDB.UnRegisterStudent(cs);
+                
               reloadreg();
               reloadunreg();
             }
