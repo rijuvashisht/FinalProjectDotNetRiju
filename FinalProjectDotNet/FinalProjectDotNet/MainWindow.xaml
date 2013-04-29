@@ -1,0 +1,223 @@
+﻿<Window x:Class="FinalProjectDotNet.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:FinalProjectDotNet"
+        Title="Student Management System" Height="475" Width="525">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFFFFF00" Offset="0"/>
+            <GradientStop Color="#FFFF0000" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" Executed="OpenStudentDetail" CanExecute="OpenCanExecute" />
+        <CommandBinding Command="Close" Executed="ExitMainApplicationExcuted" CanExecute="ExitMainAppExecuted" />
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Command="Close" Key="x" Modifiers="Ctrl"/>
+    </Window.InputBindings>
+    <Window.Resources>
+       
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid>
+                            <Border 
+                  Name="Border"
+                  Background="LightBlue"
+                  BorderBrush="Black" 
+                  BorderThickness="1,1,1,1" 
+                  CornerRadius="6,6,0,0" >
+                                <ContentPresenter x:Name="ContentSite"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    ContentSource="Header"
+                    Margin="12,2,12,2"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                               
+                                <Setter TargetName="Border" Property="Background" Value="LightBlue" />
+                                <Setter TargetName="Border" Property="Width" Value="200" />
+                                <Setter TargetName="Border" Property="Height" Value="50" />
+                               
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="LightGray" />
+                                <Setter TargetName="Border" Property="Height" Value="30" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--Data provider for list -->
+        <ObjectDataProvider x:Key="Students"
+      ObjectType="{x:Type local:Students}" MethodName="GetStudents">
+        </ObjectDataProvider>
+       
+        <ObjectDataProvider x:Key="Courses"
+     ObjectType="{x:Type local:Courses}" MethodName="GetStudents">
+            </ObjectDataProvider>
+
+        <local:Students x:Key="Studentsview">
+            
+        </local:Students>
+    </Window.Resources>
+    
+    <Grid>
+        <ToolBarTray>
+            <ToolBar DockPanel.Dock="Top" >
+                <Button Name="StudentManage" Command="Open" Margin="10" Padding="5" OverridesDefaultStyle="True">
+                    <Image  MaxHeight="40" MaxWidth="40"  Source="/FinalProjectDotNet;component/images2/student.png" ></Image>
+                </Button>
+                <Button Name="Exit" Command="Close"  Margin="10" Padding="5">
+                    <Image  MaxHeight="40" MaxWidth="40" Source="/FinalProjectDotNet;component/images2/exit.png"></Image>
+                </Button>
+            </ToolBar>
+            
+        </ToolBarTray>
+        <TabControl Margin="0,76,0,0" SelectionChanged="TabControl_SelectionChanged">
+            
+            <TabItem Header="Students">
+                <DockPanel>
+
+                    <Grid  DataContext="{StaticResource Students}" ShowGridLines="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition MaxWidth="150" MinWidth="150" ></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <ListBox Name="listboxStudent" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True"  Background="Bisque" Grid.Column="0"   Height="Auto" Width="Auto" >
+                        
+                    </ListBox>
+                    <StackPanel Grid.Column="1" MinWidth="150" MaxWidth="150" Height="324" Margin="0,0,0,6">
+                            <Button Command="Open" Content="Add Student" Margin="20,10,20,10" Click="Button_Click">
+                            
+                        </Button>
+                            <Button  Content="Delete Student"  Margin="20,10,20,10">
+
+                        </Button>
+                        <Button Content="Update Student" Margin="20,10,20,10">
+
+                        </Button>
+                        <Button Name="loadStudent" Content="Load"  Margin="20,10,20,10" Click="Button_Click_2">
+
+                        </Button>
+                            <Button Name="clearStudent" Content="Clear"  Margin="20,10,20,10" Click="Button_Click_1">
+
+                        </Button>
+                            <GroupBox>
+                                <StackPanel Height="Auto" Name="stackpanelsort" Width="Auto">
+                                <RadioButton Content="Sort By First Name" Height="Auto" Name="radiofirstname" Checked="radiofirstname_Checked" />
+                                <RadioButton Content="Sort By Last Name" Height="Auto" Name="radiolastname" Checked="radiolastname_Checked" />
+                            </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </Grid>
+                </DockPanel>
+                
+            </TabItem>
+            <TabItem Header="Courses">
+                
+                <DockPanel>
+
+                    <Grid DataContext="{StaticResource Courses}" ShowGridLines="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition MaxWidth="150" MinWidth="150" >
+                                
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <ListBox Name="listboxCourse"  ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" Background="BlanchedAlmond" Grid.Column="0"  DisplayMemberPath=" " Height="Auto" Width="Auto" >
+
+                        </ListBox>
+                        <StackPanel Grid.Column="1" MinWidth="150" MaxWidth="150">
+                            <Button Content="Add Course" Margin="20,10,20,10">
+
+                            </Button>
+                            <Button Content="Delete Course"  Margin="20,10,20,10">
+
+                            </Button>
+                            <Button Content="Update Course" Margin="20,10,20,10">
+
+                            </Button>
+                            <Button Content="Load"  Margin="20,10,20,10">
+
+                            </Button>
+                            <Button Content="Clear"  Margin="20,10,20,10">
+
+                            </Button>
+                          
+                        </StackPanel>
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Registeration" Name="Registration" Loaded="Registration_Loaded">
+                
+                  
+                
+                    <DockPanel>
+
+                    <Grid  ShowGridLines="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition MaxWidth="150" MinWidth="150" ></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            
+                        </Grid.ColumnDefinitions>
+
+                        <ListBox  Background="BlanchedAlmond" DisplayMemberPath=" " Height="277" Width="Auto" Margin="0,53,0,0" Name="listBoxReg" Loaded="listBoxReg_Loaded">
+
+                        </ListBox>
+                        <StackPanel Grid.Column="1" MinWidth="150" MaxWidth="150" Height="277" Margin="0,53,0,0">
+                            <Button Content="Register  " Margin="20,10,20,10" Name="btnReg">
+
+                            </Button>
+                            <Button Content="Unregister"  Margin="20,10,20,10" Name="btnUnReg">
+
+                            </Button>
+                           
+                        </StackPanel>
+                        <ListBox  Background="BlanchedAlmond" Grid.Column="2"  DisplayMemberPath=" " Height="277" Width="Auto" Margin="0,53,0,0" Name="listBoxUNReg">
+
+                        </ListBox>
+                        
+                        <ComboBox Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Name="cmbStudent_reg" Margin="65,0,0,0" SelectionChanged="cmbStudent_reg_SelectionChanged" />
+                        <Label Content="Student" Height="28" HorizontalAlignment="Left" Name="label7" VerticalAlignment="Top" />
+                        <Label Content="Registered" Height="28" HorizontalAlignment="Left" Margin="46,29,0,0" Name="label8" VerticalAlignment="Top" />
+                        <Label Content="Unregistered" Grid.Column="2" Height="28" HorizontalAlignment="Left" Margin="42,29,0,0" Name="label9" VerticalAlignment="Top" />
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Grades" Loaded="TabItem_Loaded">
+                <Grid>
+                    <Label Content="Student" Height="28" HorizontalAlignment="Left" Margin="36,31,0,0" Name="label1" VerticalAlignment="Top" />
+                    <Label Content="Course" Height="28" HorizontalAlignment="Left" Margin="292,31,0,0" Name="label2" VerticalAlignment="Top" />
+                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="95,31,0,0" Name="cmbStudent" VerticalAlignment="Top" Width="120" DropDownClosed="cmbStudent_DropDownClosed" />
+                    <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,31,34,0" Name="cmbCourse" VerticalAlignment="Top" Width="120" SelectionChanged="cmbCourse_SelectionChanged" />
+                    <Grid Height="174" HorizontalAlignment="Left" Margin="95,85,0,0" Name="GradeDisplay" VerticalAlignment="Top" Width="260">
+                        <Label Content="Mid Term" Height="28" HorizontalAlignment="Left" Margin="11,14,0,0" Name="label3" VerticalAlignment="Top" />
+                        <Label Content="Final Term" Height="28" HorizontalAlignment="Left" Margin="11,48,0,0" Name="label4" VerticalAlignment="Top" />
+                        <Label Content="Assignment" Height="28" HorizontalAlignment="Left" Margin="11,87,0,0" Name="label5" VerticalAlignment="Top" />
+                        <Label Content="Total" Height="28" HorizontalAlignment="Left" Margin="11,121,0,0" Name="label6" VerticalAlignment="Top" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="114,14,0,0" Name="txtMidTerm" VerticalAlignment="Top" Width="120" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="114,48,0,0" Name="txtFinalTerm" VerticalAlignment="Top" Width="120" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="114,87,0,0" Name="txtAssignment" VerticalAlignment="Top" Width="120" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="114,121,0,0" Name="txtTotal" VerticalAlignment="Top" Width="120" />
+
+                    </Grid>
+                    <Button Content="Update" Height="23" HorizontalAlignment="Left" Margin="388,236,0,0" Name="btnUpdate" VerticalAlignment="Top" Width="75" Click="btnUpdate_Click" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Reports">
+                Reports
+            </TabItem>
+        </TabControl>
+        
+    </Grid>
+</Window>
